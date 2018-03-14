@@ -78,7 +78,7 @@ module ASIN
 
     def search_upc(upc)
       response = call(:Operation => :ItemLookup, :ItemId => upc, :SearchIndex => :All, :IdType => :UPC)
-      arrayfy(response['ItemSearchResponse']['Items']['Item']).map {|item| handle_type(item, :item)}
+      arrayfy(response['ItemLookupResponse']['Items']['Item']).map {|item| handle_type(item, :item)}
     end
 
 
