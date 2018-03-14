@@ -77,7 +77,7 @@ module ASIN
     end
 
     def search_ups(*upcs)
-      params = keywords.last.is_a?(Hash) ? upcs.pop : {:SearchIndex => :All, :ResponseGroup => :Medium}
+      params = upcs.last.is_a?(Hash) ? upcs.pop : {:SearchIndex => :All, :ResponseGroup => :Medium}
       response = call(params.merge(:Operation => :ItemLookup, :upcs => upcs.join(' ')))
       arrayfy(response['ItemSearchResponse']['Items']['Item']).map {|item| handle_type(item, :item)}
     end
